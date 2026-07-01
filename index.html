@@ -1,0 +1,316 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3R Restaurante</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fafaf9;
+            color: #292524;
+        }
+
+        h1, h2, h3, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Estilo para as linhas pontilhadas do cardápio */
+        .menu-leader {
+            border-bottom: 2px dotted #d6d3d1;
+            flex-grow: 1;
+            margin: 0 15px;
+            position: relative;
+            top: -6px;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Navegação -->
+    <nav class="bg-stone-900 text-stone-50 shadow-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="navigateTo('home')">
+                    <i data-lucide="utensils-crossed" class="h-8 w-8 text-amber-500 mr-2"></i>
+                    <span class="font-serif text-2xl font-bold tracking-wider">3R RESTAURANTE</span>
+                </div>
+                
+                <!-- Menu Desktop -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <button onclick="navigateTo('home')" class="nav-btn text-stone-300 hover:text-amber-500 transition-colors text-sm uppercase tracking-widest font-medium" data-target="home">Início</button>
+                    <button onclick="navigateTo('menu')" class="nav-btn text-amber-500 hover:text-amber-400 transition-colors text-sm uppercase tracking-widest font-medium" data-target="menu">Cardápio</button>
+                </div>
+
+                <!-- Botão Menu Mobile -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-stone-300 hover:text-white focus:outline-none">
+                        <i data-lucide="menu" class="h-8 w-8"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-stone-800 border-t border-stone-700">
+            <button onclick="navigateTo('home')" class="block w-full text-left px-4 py-3 text-sm text-stone-300 hover:bg-stone-700 uppercase tracking-wider">Início</button>
+            <button onclick="navigateTo('menu')" class="block w-full text-left px-4 py-3 text-sm text-amber-500 hover:bg-stone-700 uppercase tracking-wider">Cardápio</button>
+        </div>
+    </nav>
+
+    <!-- Área de Conteúdo Principal -->
+    <main class="flex-grow w-full">
+        
+        <!-- ================= PÁGINA INICIAL ================= -->
+        <section id="page-home" class="page-section fade-in">
+            <!-- Hero Section Simples (Sem Foto) -->
+            <div class="bg-stone-800 text-stone-100 py-24 px-4 text-center border-b-8 border-amber-500">
+                <div class="max-w-3xl mx-auto">
+                    <h1 class="text-5xl md:text-6xl font-bold mb-6 text-amber-500">Sabor e Tradição</h1>
+                    <p class="text-lg md:text-xl text-stone-300 mb-10 font-light">
+                        Bem-vindo ao 3R Restaurante. Oferecemos uma experiência gastronômica única, combinando ingredientes frescos e receitas que aquecem o coração.
+                    </p>
+                    <button onclick="navigateTo('menu')" class="bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 px-8 rounded-full transition duration-300 shadow-lg">
+                        Ver Nossos Pratos
+                    </button>
+                </div>
+            </div>
+
+            <!-- Informações Rápidas -->
+            <div class="max-w-6xl mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
+                <div class="p-6 bg-white rounded-xl shadow-sm border border-stone-100">
+                    <div class="mx-auto bg-amber-100 w-16 h-16 flex items-center justify-center rounded-full mb-4">
+                        <i data-lucide="clock" class="text-amber-600 w-8 h-8"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-semibold mb-2">Horário de Funcionamento</h3>
+                    <p class="text-stone-600 text-sm">Terça a Sábado: 11h30 às 23h<br>Domingo: 11h30 às 16h</p>
+                </div>
+                <div class="p-6 bg-white rounded-xl shadow-sm border border-stone-100">
+                    <div class="mx-auto bg-amber-100 w-16 h-16 flex items-center justify-center rounded-full mb-4">
+                        <i data-lucide="map-pin" class="text-amber-600 w-8 h-8"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-semibold mb-2">Localização</h3>
+                    <p class="text-stone-600 text-sm">Rua das Flores, 123<br>Centro - Sua Cidade, Estado</p>
+                </div>
+                <div class="p-6 bg-white rounded-xl shadow-sm border border-stone-100">
+                    <div class="mx-auto bg-amber-100 w-16 h-16 flex items-center justify-center rounded-full mb-4">
+                        <i data-lucide="phone" class="text-amber-600 w-8 h-8"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-semibold mb-2">Contato / Reservas</h3>
+                    <p class="text-stone-600 text-sm">(11) 99999-9999<br>contato@3rrestaurante.com.br</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PÁGINA DO CARDÁPIO ================= -->
+        <section id="page-menu" class="page-section hidden fade-in py-16 bg-stone-50">
+            <div class="max-w-4xl mx-auto px-4">
+                
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-serif font-bold text-stone-800 mb-4">Nosso Cardápio</h2>
+                    <div class="h-1 w-24 bg-amber-500 mx-auto rounded"></div>
+                    <p class="mt-4 text-stone-600">Conheça nossas opções preparadas com os melhores ingredientes.</p>
+                </div>
+
+                <!-- Categoria: Entradas -->
+                <div class="mb-14">
+                    <h3 class="text-2xl font-serif font-bold text-amber-700 mb-6 uppercase tracking-wider border-b border-stone-200 pb-2">Entradas</h3>
+                    
+                    <div class="space-y-6">
+                        <!-- Prato -->
+                        <div>
+                            <div class="flex justify-between items-baseline mb-1">
+                                <h4 class="font-bold text-lg text-stone-800">Bruschetta Clássica</h4>
+                                <div class="menu-leader"></div>
+                                <span class="font-bold text-lg text-stone-900">R$ 28,00</span>
+                            </div>
+                            <p class="text-stone-500 text-sm italic">Pão italiano tostado, tomates frescos, manjericão e azeite extra virgem.</p>
+                        </div>
+                        
+                        <!-- Prato -->
+                        <div>
+                            <div class="flex justify-between items-baseline mb-1">
+                                <h4 class="font-bold text-lg text-stone-800">Tábua de Queijos e Frios</h4>
+                                <div class="menu-leader"></div>
+                                <span class="font-bold text-lg text-stone-900">R$ 65,00</span>
+                            </div>
+                            <p class="text-stone-500 text-sm italic">Seleção especial de queijos artesanais, salame, copa e azeitonas. Serve 2 pessoas.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Categoria: Pratos Principais -->
+                <div class="mb-14">
+                    <h3 class="text-2xl font-serif font-bold text-amber-700 mb-6 uppercase tracking-wider border-b border-stone-200 pb-2">Pratos Principais</h3>
+                    
+                    <div class="space-y-8">
+                        <!-- Prato -->
+                        <div>
+                            <div class="flex justify-between items-baseline mb-1">
+                                <h4 class="font-bold text-lg text-stone-800">Picanha 3R na Chapa</h4>
+                                <div class="menu-leader"></div>
+                                <span class="font-bold text-lg text-stone-900">R$ 145,00</span>
+                            </div>
+                            <p class="text-stone-500 text-sm italic">Corte premium de picanha servido na chapa. Acompanha arroz biro-biro, farofa rica, vinagrete e batatas rústicas. (Serve 2 pessoas)</p>
+                        </div>
+
+                        <!-- Prato -->
+                        <div>
+                            <div class="flex justify-between items-baseline mb-1">
+                                <h4 class="font-bold text-lg text-stone-800">Filé Mignon à Parmegiana</h4>
+                                <div class="menu-leader"></div>
+                                <span class="font-bold text-lg text-stone-900">R$ 72,00</span>
+                            </div>
+                            <p class="text-stone-500 text-sm italic">Sculento filé mignon empanado, gratinado com queijo muçarela e molho de tomate artesanal. Acompanha arroz branco e purê de batatas.</p>
+                        </div>
+
+                        <!-- Prato -->
+                        <div>
+                            <div class="flex justify-between items-baseline mb-1">
+                                <h4 class="font-bold text-lg text-stone-800">Risoto de Funghi Secchi</h4>
+                                <div class="menu-leader"></div>
+                                <span class="font-bold text-lg text-stone-900">R$ 58,00</span>
+                            </div>
+                            <p class="text-stone-500 text-sm italic">Clássico risoto italiano com arroz arbóreo, mix de cogumelos, vinho branco e finalizado com queijo parmesão grana padano.</p>
+                        </div>
+
+                        <!-- Prato -->
+                        <div>
+                            <div class="flex justify-between items-baseline mb-1">
+                                <h4 class="font-bold text-lg text-stone-800">Salmão Grelhado ao Maracujá</h4>
+                                <div class="menu-leader"></div>
+                                <span class="font-bold text-lg text-stone-900">R$ 85,00</span>
+                            </div>
+                            <p class="text-stone-500 text-sm italic">Posta de salmão fresco grelhada com molho agridoce de maracujá. Acompanha legumes salteados na manteiga.</p>
+                        </div>
+                        
+                        <!-- Prato -->
+                        <div>
+                            <div class="flex justify-between items-baseline mb-1">
+                                <h4 class="font-bold text-lg text-stone-800">Frango Leve</h4>
+                                <div class="menu-leader"></div>
+                                <span class="font-bold text-lg text-stone-900">R$ 38,00</span>
+                            </div>
+                            <p class="text-stone-500 text-sm italic">Peito de frango marinado em ervas finas e grelhado. Acompanha salada verde e arroz integral. Opção saudável.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Categoria: Sobremesas -->
+                <div class="mb-14">
+                    <h3 class="text-2xl font-serif font-bold text-amber-700 mb-6 uppercase tracking-wider border-b border-stone-200 pb-2">Sobremesas</h3>
+                    
+                    <div class="space-y-6">
+                        <!-- Prato -->
+                        <div>
+                            <div class="flex justify-between items-baseline mb-1">
+                                <h4 class="font-bold text-lg text-stone-800">Petit Gâteau</h4>
+                                <div class="menu-leader"></div>
+                                <span class="font-bold text-lg text-stone-900">R$ 25,00</span>
+                            </div>
+                            <p class="text-stone-500 text-sm italic">Bolo de chocolate com recheio cremoso, acompanhado de sorvete de creme e calda.</p>
+                        </div>
+
+                        <!-- Prato -->
+                        <div>
+                            <div class="flex justify-between items-baseline mb-1">
+                                <h4 class="font-bold text-lg text-stone-800">Pudim de Leite Tradicional</h4>
+                                <div class="menu-leader"></div>
+                                <span class="font-bold text-lg text-stone-900">R$ 18,00</span>
+                            </div>
+                            <p class="text-stone-500 text-sm italic">Receita da casa, sem furinhos, com deliciosa calda de caramelo.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="bg-stone-900 text-stone-400 py-10 text-center border-t border-stone-800">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0 text-left">
+                <span class="font-serif text-xl font-bold text-stone-200 tracking-wider">3R RESTAURANTE</span>
+                <p class="text-sm mt-2">Sabor que fica na memória.</p>
+            </div>
+            
+            <div class="text-center md:text-right">
+                <p class="text-sm">© 2023 3R Restaurante. Todos os direitos reservados.</p>
+                <p class="text-sm font-semibold text-stone-300 mt-1 flex items-center justify-center md:justify-end">
+                    <i data-lucide="file-text" class="w-4 h-4 mr-1"></i>
+                    CNPJ: 13.781.809/0001-40
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Inicialização de Ícones e Lógica de Navegação -->
+    <script>
+        // Inicializa os ícones do Lucide
+        lucide.createIcons();
+
+        // Lógica do Menu Mobile
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Lógica de Navegação entre "Páginas"
+        function navigateTo(targetPageId) {
+            // Esconde todas as seções
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.add('hidden');
+                // Remove e adiciona a classe para resetar a animação CSS
+                section.classList.remove('fade-in');
+            });
+
+            // Mostra a seção alvo
+            const targetSection = document.getElementById(`page-${targetPageId}`);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+                // Força reflow e adiciona a animação
+                void targetSection.offsetWidth; 
+                targetSection.classList.add('fade-in');
+            }
+
+            // Atualiza o visual dos botões no menu desktop
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                if (btn.dataset.target === targetPageId) {
+                    btn.classList.remove('text-stone-300');
+                    btn.classList.add('text-amber-500');
+                } else {
+                    btn.classList.remove('text-amber-500');
+                    btn.classList.add('text-stone-300');
+                }
+            });
+
+            // Esconde o menu mobile se estiver aberto após clicar
+            menu.classList.add('hidden');
+
+            // Rola para o topo da página suavemente
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
+
+```
